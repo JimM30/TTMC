@@ -248,6 +248,7 @@ body{display:flex;align-items:center;justify-content:center;min-height:100vh;pad
     <div class="modal-tabs">
       <button class="modal-tab active" onclick="adminTab('questions')">Questions</button>
       <button class="modal-tab" onclick="adminTab('themes')">Thèmes</button>
+      <button class="modal-tab" onclick="adminTab('export')">Exporter</button>
       <button class="modal-tab" onclick="adminTab('code')">Code</button>
     </div>
     <div class="modal-body" id="admin-body"></div>
@@ -625,11 +626,44 @@ function checkCode(){const v=document.getElementById('code-input').value;if(v===
 function openAdmin(){adminTab('questions');document.getElementById('admin-overlay').classList.add('open');}
 function closeAdmin(){document.getElementById('admin-overlay').classList.remove('open');}
 function adminTab(t){
-  document.querySelectorAll('.modal-tab').forEach((b,i)=>b.classList.toggle('active',['questions','themes','code'][i]===t));
+  document.querySelectorAll('.modal-tab').forEach((b,i)=>b.classList.toggle('active',['questions','themes','export','code'][i]===t));
   const body=document.getElementById('admin-body');
   if(t==='questions')renderAdminQuestions(body);
   else if(t==='themes')renderAdminThemes(body);
+  else if(t==='export')renderAdminExport(body);
   else renderAdminCode(body);
+}
+function renderAdminExport(body){
+  const totalThemes=DB.themes.length;
+  const totalQuestions=Object.values(DB.questions).reduce((acc,qs)=>acc+(qs||[]).length,0);
+  body.innerHTML=`
+    <div class="info-note">
+      📥 <strong>Problème :</strong> Tes thèmes et questions sont dans le navigateur. Si tu uploades un nouveau fichier sur GitHub, ils ne sont <strong>pas dedans</strong>.<br><br>
+      ✅ <strong>Solution :</strong> Clique ci-dessous pour télécharger un fichier HTML qui <strong>contient déjà toutes tes données</strong>. C'est ce fichier que tu mets sur GitHub !
+    </div>
+    <div style="background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:12px 14px;display:flex;justify-content:space-between;align-items:center;">
+      <div>
+        <div style="font-size:13px;font-weight:700;color:white">${totalThemes} thèmes</div>
+        <div style="font-size:11px;color:var(--text3)">${totalQuestions} questions au total</div>
+      </div>
+      <div style="font-size:24px">📦</div>
+    </div>
+    <button onclick="exportWithData()" style="background:linear-gradient(135deg,#3AFFE8,#00C9B1);border:none;border-radius:10px;padding:12px;color:var(--bg);font-size:14px;font-weight:800;cursor:pointer;font-family:'Nunito',sans-serif;width:100%;transition:.2s;">⬇️ Télécharger le HTML avec mes données</button>
+    <div class="info-note" style="margin-top:0">Renomme le fichier en <strong>index.html</strong> avant de l'uploader sur GitHub.</div>`;
+}
+function exportWithData(){
+  const dbJson=JSON.stringify(DB).replace(/</g,'\\u003c').replace(/>/g,'\\u003e').replace(/&/g,'\\u0026');
+  const html=document.documentElement.outerHTML;
+  const exported=html.replace(
+    /const DEFAULT_DB=\{[\s\S]*?\}(?=;\s*\nfunction loadState)/,
+    `const DEFAULT_DB=${dbJson}`
+  );
+  const blob=new Blob([exported],{type:'text/html'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download='ttmc.html';
+  a.click();
+  URL.revokeObjectURL(a.href);
 }
 
 let editQIdx=null;
