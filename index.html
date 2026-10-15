@@ -219,7 +219,7 @@ body{display:flex;align-items:center;justify-content:center;min-height:100vh;pad
 <div id="app">
 
   <!-- S0 MODE -->
-  <div id="s0" class="screen">
+  <div id="s0" class="screen active">
     <div class="topbar">
       <div class="logo">TTMC</div>
       <button class="admin-btn" onclick="openCodeModal()">🔐 Admin</button>
@@ -232,12 +232,12 @@ body{display:flex;align-items:center;justify-content:center;min-height:100vh;pad
       <div class="tagline">Choisis ton mode de jeu</div>
       <div class="mode-select-wrap">
         <div class="mode-cards">
-          <div class="mode-card" id="mc-selection" onclick="selectMode('selection')">
+          <div class="mode-card selected" id="mc-selection" onclick="selectMode('selection')">
             <div class="mc-icon">📋</div>
             <div class="mc-name">Sélection</div>
             <div class="mc-desc">Choisis les thèmes à jouer</div>
           </div>
-          <div class="mode-card selected" id="mc-roulette" onclick="selectMode('roulette')">
+          <div class="mode-card" id="mc-roulette" onclick="selectMode('roulette')">
             <div class="mc-icon">🎰</div>
             <div class="mc-name">Roulette</div>
             <div class="mc-desc">La roue décide du thème</div>
@@ -249,7 +249,7 @@ body{display:flex;align-items:center;justify-content:center;min-height:100vh;pad
   </div>
 
   <!-- S1 ACCUEIL -->
-  <div id="s1" class="screen active">
+  <div id="s1" class="screen">
     <div class="topbar">
       <div class="logo">TTMC</div>
       <button class="admin-btn" onclick="openCodeModal()">🔐 Admin</button>
@@ -275,70 +275,14 @@ body{display:flex;align-items:center;justify-content:center;min-height:100vh;pad
   <!-- S2 JEU -->
   <div id="s2" class="screen">
     <div class="game-header">
-      <div class="scoreboard" id="scoreboard"><div class="score-pill">
-      <span class="score-name" style="color:#E8FF3A">yu</span>
-      <span class="score-pts ">0</span>
-    </div><div class="score-pill">
-      <span class="score-name" style="color:#3AFFE8">uiou</span>
-      <span class="score-pts ">0</span>
-    </div></div>
+      <div class="scoreboard" id="scoreboard"></div>
     </div>
     <div class="phase-indicator">
-      <div class="phase-dot done" id="pd1"></div>
-      <div class="phase-dot done" id="pd2"></div>
-      <div class="phase-dot active" id="pd3"></div>
+      <div class="phase-dot active" id="pd1"></div>
+      <div class="phase-dot" id="pd2"></div>
+      <div class="phase-dot" id="pd3"></div>
     </div>
-    <div class="theme-area" id="theme-area">
-    <div style="width:100%;max-width:460px;overflow-y:auto">
-      <div style="font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:2px;margin-bottom:10px;text-align:center">🎵 Musique — Questions</div>
-      
-      <div style="background:var(--surface2);border:1px solid var(--border);border-radius:14px;padding:14px 16px;width:100%;margin-bottom:8px">
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
-          <span style="color:#E8FF3A;font-weight:800;font-size:13px">yu</span>
-          <span style="font-family:'Bebas Neue',cursive;font-size:16px;color:var(--accent)">Niveau 5</span>
-        </div>
-        <div style="font-size:15px;font-weight:800;color:white;line-height:1.4;margin-bottom:8px">Quel est le vrai nom de Lady Gaga ?</div>
-        <div id="ans-0" style="display: block;">
-          <div style="font-size:10px;color:rgba(232,255,58,0.5);text-transform:uppercase;letter-spacing:2px;margin-bottom:2px">Réponse</div>
-          <div style="font-size:14px;font-weight:800;color:var(--accent)">Stefani Germanotta</div>
-        </div>
-        <button onclick="toggleAnswer(0)" id="ans-btn-0" style="background:rgba(232,255,58,0.08);border:1px solid rgba(232,255,58,0.2);border-radius:8px;padding:5px 12px;color:var(--accent);font-size:12px;font-weight:700;cursor:pointer;font-family:'Nunito',sans-serif;margin-top:4px">🙈 Cacher</button>
-      </div>
-      <div style="background:var(--surface2);border:1px solid var(--border);border-radius:14px;padding:14px 16px;width:100%;margin-bottom:8px">
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
-          <span style="color:#3AFFE8;font-weight:800;font-size:13px">uiou</span>
-          <span style="font-family:'Bebas Neue',cursive;font-size:16px;color:var(--accent)">Niveau 4</span>
-        </div>
-        <div style="font-size:15px;font-weight:800;color:white;line-height:1.4;margin-bottom:8px">Qui a composé La Flûte enchantée ?</div>
-        <div id="ans-1" style="display: block;">
-          <div style="font-size:10px;color:rgba(232,255,58,0.5);text-transform:uppercase;letter-spacing:2px;margin-bottom:2px">Réponse</div>
-          <div style="font-size:14px;font-weight:800;color:var(--accent)">Mozart</div>
-        </div>
-        <button onclick="toggleAnswer(1)" id="ans-btn-1" style="background:rgba(232,255,58,0.08);border:1px solid rgba(232,255,58,0.2);border-radius:8px;padding:5px 12px;color:var(--accent);font-size:12px;font-weight:700;cursor:pointer;font-family:'Nunito',sans-serif;margin-top:4px">🙈 Cacher</button>
-      </div>
-      <div style="font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:2px;margin:14px 0 8px;text-align:center">Résultats du tour</div>
-      <div class="score-dist" id="score-dist">
-      <div class="score-dist-row" id="qrow-0">
-        <div class="sdr-name" style="color:#E8FF3A">yu</div>
-        <div class="sdr-mise" style="color:var(--accent)">Lvl 5</div>
-        <div style="display:flex;gap:6px">
-          <button class="sdr-correct" id="btn-correct-0" onclick="markAnswer('yu',0,true)">✓ Juste</button>
-          <button class="sdr-wrong" id="btn-wrong-0" onclick="markAnswer('yu',0,false)">✗ Faux</button>
-        </div>
-      </div>
-      <div class="score-dist-row" id="qrow-1">
-        <div class="sdr-name" style="color:#3AFFE8">uiou</div>
-        <div class="sdr-mise" style="color:var(--accent)">Lvl 4</div>
-        <div style="display:flex;gap:6px">
-          <button class="sdr-correct" id="btn-correct-1" onclick="markAnswer('uiou',1,true)">✓ Juste</button>
-          <button class="sdr-wrong" id="btn-wrong-1" onclick="markAnswer('uiou',1,false)">✗ Faux</button>
-        </div>
-      </div></div>
-      <div style="display:flex;gap:10px;justify-content:center;margin-top:4px;flex-wrap:wrap">
-        <button class="next-round-btn" onclick="nextRound()" id="next-round-btn">Tour suivant →</button>
-        <button class="replay-btn-home" onclick="goTo('s1')" style="background:rgba(255,255,255,0.07);border:1px solid var(--border);border-radius:12px;padding:12px 20px;color:var(--text2);font-size:14px;font-weight:700;cursor:pointer;font-family:'Nunito',sans-serif;">← Accueil</button>
-      </div>
-    </div></div>
+    <div class="theme-area" id="theme-area"></div>
   </div>
 
 </div>
@@ -356,148 +300,1396 @@ body{display:flex;align-items:center;justify-content:center;min-height:100vh;pad
 </div>
 
 <!-- ADMIN MODAL -->
-<div class="modal-overlay open" id="admin-overlay">
+<div class="modal-overlay" id="admin-overlay">
   <div class="modal">
     <div class="modal-title">ADMIN <button class="modal-close" onclick="closeAdmin()">✕</button></div>
     <div class="modal-tabs">
       <button class="modal-tab" onclick="adminTab('questions')">Questions</button>
       <button class="modal-tab" onclick="adminTab('themes')">Thèmes</button>
-      <button class="modal-tab active" onclick="adminTab('export')">Exporter</button>
+      <button class="modal-tab" onclick="adminTab('export')">Exporter</button>
       <button class="modal-tab" onclick="adminTab('code')">Code</button>
     </div>
-    <div class="modal-body" id="admin-body">
-    <div class="info-note">
-      📥 <strong>Problème :</strong> Tes thèmes et questions sont dans le navigateur. Si tu uploades un nouveau fichier sur GitHub, ils ne sont <strong>pas dedans</strong>.<br><br>
-      ✅ <strong>Solution :</strong> Clique ci-dessous pour télécharger un fichier HTML qui <strong>contient déjà toutes tes données</strong>. C'est ce fichier que tu mets sur GitHub !
-    </div>
-    <div style="background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:12px 14px;display:flex;justify-content:space-between;align-items:center;">
-      <div>
-        <div style="font-size:13px;font-weight:700;color:white">9 thèmes</div>
-        <div style="font-size:11px;color:var(--text3)">259 questions au total</div>
-      </div>
-      <div style="font-size:24px">📦</div>
-    </div>
-    <button onclick="exportWithData()" style="background:linear-gradient(135deg,#3AFFE8,#00C9B1);border:none;border-radius:10px;padding:12px;color:var(--bg);font-size:14px;font-weight:800;cursor:pointer;font-family:'Nunito',sans-serif;width:100%;transition:.2s;">⬇️ Télécharger le HTML avec mes données</button>
-    <div class="info-note" style="margin-top:0">Renomme le fichier en <strong>index.html</strong> avant de l'uploader sur GitHub.</div></div>
+    <div class="modal-body" id="admin-body"></div>
   </div>
 </div>
 
 <div class="save-badge" id="save-badge">✓ Sauvegardé</div>
 
 <script>
+const SOURCE_HTML=(()=>{
+  const c=document.documentElement.cloneNode(true);
+  const q=(sel)=>c.querySelector(sel);
+  c.querySelectorAll('.screen').forEach(e=>e.classList.toggle('active',e.id==='s0'));
+  c.querySelectorAll('.modal-overlay').forEach(e=>e.classList.remove('open'));
+  ['#admin-body','#theme-area','#scoreboard','#player-tags'].forEach(sel=>{const e=q(sel);if(e)e.innerHTML='';});
+  return '<!DOCTYPE html>\n'+c.outerHTML;
+})();
 const STORAGE_KEY = 'ttmc_v1';
 const COLORS = ['#E8FF3A','#3AFFE8','#FF3A6E','#A78BFA','#FF9500','#06B6D4','#F472B6','#84CC16'];
 
 const DEFAULT_DB = {
-  adminCode: '1234',
-  themes: [
-    {id:'th_animaux', name:'Animaux', emoji:'🐾'},
-    {id:'th_sport', name:'Sport', emoji:'⚽'},
-    {id:'th_cinema', name:'Cinéma', emoji:'🎬'},
-    {id:'th_geographie', name:'Géographie', emoji:'🌍'},
-    {id:'th_histoire', name:'Histoire', emoji:'📜'},
-    {id:'th_musique', name:'Musique', emoji:'🎵'},
-    {id:'th_sciences', name:'Sciences', emoji:'🔬'},
-    {id:'th_gastronomie', name:'Gastronomie', emoji:'🍽️'},
-  ],
-  questions: {
-    th_animaux: [
-      {q:"Quel animal est le plus grand du monde ?", a:"La baleine bleue", level:1},
-      {q:"Combien de pattes a une araignée ?", a:"8", level:2},
-      {q:"Quel est le seul mammifère qui peut voler ?", a:"La chauve-souris", level:3},
-      {q:"De quoi se nourrit le panda géant ?", a:"De bambou", level:4},
-      {q:"Quel animal a la gestation la plus longue ?", a:"L'éléphant (22 mois)", level:5},
-      {q:"Combien d'yeux a une abeille ?", a:"5 yeux", level:6},
-      {q:"Quel est le venin le plus puissant parmi les serpents ?", a:"Le taipan intérieur", level:7},
-      {q:"Combien de cœurs a une pieuvre ?", a:"3 cœurs", level:8},
-      {q:"Quel est l'animal dont l'ADN est le plus proche de celui de l'humain ?", a:"Le chimpanzé (98,7%)", level:9},
-      {q:"Quelle espèce d'oiseau peut imiter la voix humaine avec le plus de précision ?", a:"Le perroquet gris du Gabon", level:10},
-    ],
-    th_sport: [
-      {q:"Combien de joueurs composent une équipe de football ?", a:"11 joueurs", level:1},
-      {q:"Quelle est la distance d'un marathon ?", a:"42,195 km", level:2},
-      {q:"Dans quel sport marque-t-on des essais ?", a:"Le rugby", level:3},
-      {q:"Quel pays a remporté le plus de Coupes du Monde de football ?", a:"Le Brésil (5 titres)", level:4},
-      {q:"Combien de sets faut-il gagner pour remporter Wimbledon en simple messieurs ?", a:"3 sets gagnants", level:5},
-      {q:"Quel est le record du monde du 100m masculin ?", a:"9,58s par Usain Bolt", level:6},
-      {q:"Dans quel sport utilise-t-on un marteau de 7,26 kg ?", a:"Le lancer du marteau", level:7},
-      {q:"Quel club détient le record de victoires en Ligue des Champions ?", a:"Le Real Madrid (15 titres)", level:8},
-      {q:"En quelle année la France a-t-elle gagné sa première Coupe du Monde ?", a:"1998", level:9},
-      {q:"Quel est le score parfait au bowling ?", a:"300 (12 strikes consécutifs)", level:10},
-    ],
-    th_cinema: [
-      {q:"Quel acteur joue Iron Man dans le MCU ?", a:"Robert Downey Jr.", level:1},
-      {q:"Dans quel film entend-on 'I'll be back' ?", a:"Terminator (1984)", level:2},
-      {q:"Qui a réalisé Pulp Fiction ?", a:"Quentin Tarantino", level:3},
-      {q:"Quel film a battu le record de Titanic au box-office mondial ?", a:"Avengers Endgame", level:4},
-      {q:"Quel acteur a joué à la fois dans Matrix et John Wick ?", a:"Keanu Reeves", level:5},
-      {q:"Dans quel film Marlon Brando joue-t-il Don Corleone ?", a:"Le Parrain (1972)", level:6},
-      {q:"Quel est le film d'animation Disney avec la première princesse noire ?", a:"La Princesse et la Grenouille", level:7},
-      {q:"Qui a composé la musique de Star Wars ?", a:"John Williams", level:8},
-      {q:"Quel film de 1941 est souvent cité comme le meilleur de l'histoire ?", a:"Citizen Kane d'Orson Welles", level:9},
-      {q:"Quel réalisateur a fondé la Nouvelle Vague française avec À bout de souffle ?", a:"Jean-Luc Godard", level:10},
-    ],
-    th_geographie: [
-      {q:"Quelle est la capitale de l'Australie ?", a:"Canberra", level:1},
-      {q:"Quel est le plus grand pays du monde ?", a:"La Russie", level:2},
-      {q:"Dans quel pays se trouve le Taj Mahal ?", a:"L'Inde", level:3},
-      {q:"Quel est le plus long fleuve du monde ?", a:"Le Nil (ou l'Amazone selon les mesures)", level:4},
-      {q:"Quelle est la capitale du Canada ?", a:"Ottawa", level:5},
-      {q:"Quel est le plus grand désert du monde ?", a:"L'Antarctique", level:6},
-      {q:"Dans quel pays se trouve le Machu Picchu ?", a:"Le Pérou", level:7},
-      {q:"Quelle mer se trouve entre l'Italie et la Croatie ?", a:"La mer Adriatique", level:8},
-      {q:"Quelle est la capitale du Kazakhstan ?", a:"Astana", level:9},
-      {q:"Quel détroit sépare l'Espagne du Maroc ?", a:"Le détroit de Gibraltar", level:10},
-    ],
-    th_histoire: [
-      {q:"En quelle année a eu lieu la Révolution française ?", a:"1789", level:1},
-      {q:"Qui a découvert l'Amérique en 1492 ?", a:"Christophe Colomb", level:2},
-      {q:"Quelle civilisation a construit les pyramides de Gizeh ?", a:"Les Anciens Égyptiens", level:3},
-      {q:"En quelle année a eu lieu le débarquement en Normandie ?", a:"1944", level:4},
-      {q:"Qui était le premier président des États-Unis ?", a:"George Washington", level:5},
-      {q:"En quelle année est tombé le mur de Berlin ?", a:"1989", level:6},
-      {q:"Quel traité a mis fin à la Première Guerre Mondiale ?", a:"Le traité de Versailles (1919)", level:7},
-      {q:"Qui a fondé l'Empire mongol au XIIIe siècle ?", a:"Gengis Khan", level:8},
-      {q:"En quelle année a été fondée la République Populaire de Chine ?", a:"1949", level:9},
-      {q:"Quelle bataille de 732 a stoppé l'expansion arabe en Europe ?", a:"La bataille de Poitiers", level:10},
-    ],
-    th_musique: [
-      {q:"Qui chante Thriller ?", a:"Michael Jackson", level:1},
-      {q:"Quel groupe a chanté Bohemian Rhapsody ?", a:"Queen", level:2},
-      {q:"Dans quel pays est né Bob Marley ?", a:"La Jamaïque", level:3},
-      {q:"Qui a composé La Flûte enchantée ?", a:"Mozart", level:4},
-      {q:"Quel est le vrai nom de Lady Gaga ?", a:"Stefani Germanotta", level:5},
-      {q:"Quel groupe britannique a sorti The Dark Side of the Moon ?", a:"Pink Floyd", level:6},
-      {q:"Qui a composé le Boléro ?", a:"Maurice Ravel", level:7},
-      {q:"Quel pianiste polonais romantique a composé des nocturnes célèbres ?", a:"Frédéric Chopin", level:8},
-      {q:"Qui a composé Les Quatre Saisons ?", a:"Antonio Vivaldi", level:9},
-      {q:"Quel est le nom du célèbre opéra de Verdi avec un personnage nommé Violetta ?", a:"La Traviata", level:10},
-    ],
-    th_sciences: [
-      {q:"Quelle est la formule chimique de l'eau ?", a:"H₂O", level:1},
-      {q:"Quelle planète est la plus grande du système solaire ?", a:"Jupiter", level:2},
-      {q:"Quel est le symbole chimique de l'or ?", a:"Au", level:3},
-      {q:"Combien d'os a le corps humain adulte ?", a:"206 os", level:4},
-      {q:"Quelle est la vitesse de la lumière ?", a:"300 000 km/s", level:5},
-      {q:"Qui a formulé la théorie de la relativité ?", a:"Albert Einstein", level:6},
-      {q:"Quel gaz représente 78% de l'atmosphère terrestre ?", a:"L'azote", level:7},
-      {q:"Quel est le numéro atomique de l'hélium ?", a:"2", level:8},
-      {q:"Quelle enzyme réplique l'ADN ?", a:"L'ADN polymérase", level:9},
-      {q:"Combien de milliards de paires de bases contient le génome humain ?", a:"3 milliards", level:10},
-    ],
-    th_gastronomie: [
-      {q:"Dans quel pays est né le sushi ?", a:"Le Japon", level:1},
-      {q:"Quelle épice est la plus chère du monde ?", a:"Le safran", level:2},
-      {q:"De quel pays vient le fromage Gouda ?", a:"Les Pays-Bas", level:3},
-      {q:"Quel cocktail contient du rhum, de la menthe et du citron vert ?", a:"Le mojito", level:4},
-      {q:"Dans quel pays est né le croissant ?", a:"L'Autriche", level:5},
-      {q:"Quelle région française est réputée pour sa choucroute ?", a:"L'Alsace", level:6},
-      {q:"De quel pays vient le mets délicat fugu ?", a:"Le Japon", level:7},
-      {q:"Quel champignon haut de gamme pousse notamment dans le Périgord ?", a:"La truffe noire", level:8},
-      {q:"Dans quelle région d'Espagne produit-on le jambon Pata Negra ?", a:"L'Estrémadure et l'Andalousie", level:9},
-      {q:"Quel est le vrai nom du cépage utilisé pour le champagne blanc de blancs ?", a:"Le chardonnay", level:10},
-    ],
+ "adminCode": "1234",
+ "themes": [
+  {
+   "id": "th_animaux",
+   "name": "Animaux",
+   "emoji": "🐾"
+  },
+  {
+   "id": "th_sport",
+   "name": "Sport",
+   "emoji": "⚽"
+  },
+  {
+   "id": "th_cinema",
+   "name": "Cinéma",
+   "emoji": "🎬"
+  },
+  {
+   "id": "th_geographie",
+   "name": "Géographie",
+   "emoji": "🌍"
+  },
+  {
+   "id": "th_histoire",
+   "name": "Histoire",
+   "emoji": "📜"
+  },
+  {
+   "id": "th_musique",
+   "name": "Musique",
+   "emoji": "🎵"
+  },
+  {
+   "id": "th_sciences",
+   "name": "Sciences",
+   "emoji": "🔬"
+  },
+  {
+   "id": "th_gastronomie",
+   "name": "Gastronomie",
+   "emoji": "🍽️"
+  },
+  {
+   "id": "th_1792088706487",
+   "name": "EVG",
+   "emoji": "🎯"
   }
+ ],
+ "questions": {
+  "th_animaux": [
+   {
+    "q": "Quel animal est le plus grand du monde ?",
+    "a": "La baleine bleue",
+    "level": 1
+   },
+   {
+    "q": "Combien de pattes a une araignée ?",
+    "a": "8",
+    "level": 2
+   },
+   {
+    "q": "Quel est le seul mammifère qui peut voler ?",
+    "a": "La chauve-souris",
+    "level": 3
+   },
+   {
+    "q": "De quoi se nourrit le panda géant ?",
+    "a": "De bambou",
+    "level": 4
+   },
+   {
+    "q": "Quel animal a la gestation la plus longue ?",
+    "a": "L'éléphant (22 mois)",
+    "level": 5
+   },
+   {
+    "q": "Combien d'yeux a une abeille ?",
+    "a": "5 yeux",
+    "level": 6
+   },
+   {
+    "q": "Quel est le venin le plus puissant parmi les serpents ?",
+    "a": "Le taipan intérieur",
+    "level": 7
+   },
+   {
+    "q": "Combien de cœurs a une pieuvre ?",
+    "a": "3 cœurs",
+    "level": 8
+   },
+   {
+    "q": "Quel est l'animal dont l'ADN est le plus proche de celui de l'humain ?",
+    "a": "Le chimpanzé (98,7%)",
+    "level": 9
+   },
+   {
+    "q": "Quelle espèce d'oiseau peut imiter la voix humaine avec le plus de précision ?",
+    "a": "Le perroquet gris du Gabon",
+    "level": 10
+   },
+   {
+    "q": "Quel animal aboie ?",
+    "a": "Le chien",
+    "level": 1
+   },
+   {
+    "q": "Quel animal noir et blanc mange principalement du bambou ?",
+    "a": "Panda",
+    "level": 1
+   },
+   {
+    "q": "Quel animal pond des œufs et fait « cot-cot » ?",
+    "a": "La Poule",
+    "level": 1
+   },
+   {
+    "q": "Quel animal est Caroline dans Boule et Bill ?",
+    "a": "Une Tortue",
+    "level": 5
+   },
+   {
+    "q": "Comment s'appelle le bébé du Hérisson",
+    "a": "Choupisson",
+    "level": 6
+   },
+   {
+    "q": "Quel animal est Pumba dans le Roi Lion ?",
+    "a": "Phacochère",
+    "level": 1
+   },
+   {
+    "q": "Quel animal vit dans les fourmilières et apprécie les fourmis ?",
+    "a": "Le Fourmilier",
+    "level": 2
+   },
+   {
+    "q": "Quel animal a une trompe ?",
+    "a": "Elephant",
+    "level": 2
+   },
+   {
+    "q": "Comment appelle-t-on la femelle du lièvre",
+    "a": "Hase",
+    "level": 8
+   },
+   {
+    "q": "Quel est l'animal qui porte Nils Holgersson dans le dessin animé",
+    "a": "Une oie",
+    "level": 10
+   },
+   {
+    "q": "Quelle est la race du chien Beethoven ?",
+    "a": "Saint Bernard",
+    "level": 2
+   },
+   {
+    "q": "Quelle est la race du chat sans poil ?",
+    "a": "Le Sphinx",
+    "level": 3
+   },
+   {
+    "q": "Quel animal est représenté sur les polos Lacoste",
+    "a": "Crocodile",
+    "level": 2
+   },
+   {
+    "q": "Quel animal est représenté dans le navigateur Mozilla",
+    "a": "Renard",
+    "level": 3
+   },
+   {
+    "q": "Quel est le nom du poisson qui produit le caviar",
+    "a": "Esturgeon",
+    "level": 6
+   },
+   {
+    "q": "Quel poisson retourne dans la mer des Sargasses ?",
+    "a": "Anguille",
+    "level": 9
+   },
+   {
+    "q": "Quel animal est Sandy dans Bob L'éponge",
+    "a": "Ecureuil",
+    "level": 5
+   },
+   {
+    "q": "Quel animal est Moby Dick",
+    "a": "Cachalot",
+    "level": 6
+   },
+   {
+    "q": "Comment s'appelle l'animal qui mange Pinnochio",
+    "a": "Monstro",
+    "level": 10
+   },
+   {
+    "q": "Qui est le plus gros entre le mâle et la femelle chez les Hyènes",
+    "a": "Femelle",
+    "level": 4
+   },
+   {
+    "q": "Quel animal marin peut vivre plus de 400 ans ?",
+    "a": "Requin du Groenland",
+    "level": 8
+   },
+   {
+    "q": "Quel est le nom du chat de Karl Lagarfeld",
+    "a": "Choupette",
+    "level": 10
+   },
+   {
+    "q": "Quel animal est le plus rapide sur terre ?",
+    "a": "Guépard",
+    "level": 3
+   },
+   {
+    "q": "Comment s'appelle le chien célèbre envoyé dans l'espace par les Russes ?",
+    "a": "Laika",
+    "level": 7
+   },
+   {
+    "q": "Quel animal représente une marque de voiture anglaise ?",
+    "a": "Jaguar",
+    "level": 4
+   },
+   {
+    "q": "Que sont les caecotrophes ?",
+    "a": "Des crottes molles de lapin",
+    "level": 9
+   },
+   {
+    "q": "Quel animal est un symbole de la France",
+    "a": "Le Coq",
+    "level": 3
+   },
+   {
+    "q": "Le lapin est il un rongeur ?",
+    "a": "Non (Lagomorphes)",
+    "level": 4
+   },
+   {
+    "q": "Selon la mythologie chinoise qui est le roi des singes",
+    "a": "Sun Wukong",
+    "level": 9
+   },
+   {
+    "q": "L'ornithorynque est il un mammifère ?",
+    "a": "Oui",
+    "level": 5
+   },
+   {
+    "q": "Quel animal est l'emblème de l'Alsace",
+    "a": "Cigogne",
+    "level": 5
+   },
+   {
+    "q": "Quel oiseau pratique le parasitisme de couvée",
+    "a": "Le Coucou Gris",
+    "level": 8
+   },
+   {
+    "q": "Combien de coeur possède une pieuvre",
+    "a": "3",
+    "level": 7
+   },
+   {
+    "q": "Combien de vagin a un Kangourou",
+    "a": "3",
+    "level": 8
+   },
+   {
+    "q": "Combien d'estomac a une étoile de mer",
+    "a": "2",
+    "level": 7
+   }
+  ],
+  "th_sport": [
+   {
+    "q": "Combien de joueurs composent une équipe de football ?",
+    "a": "11 joueurs",
+    "level": 1
+   },
+   {
+    "q": "Quelle est la distance d'un marathon ?",
+    "a": "42,195 km",
+    "level": 2
+   },
+   {
+    "q": "Dans quel sport marque-t-on des essais ?",
+    "a": "Le rugby",
+    "level": 3
+   },
+   {
+    "q": "Quel pays a remporté le plus de Coupes du Monde de football ?",
+    "a": "Le Brésil (5 titres)",
+    "level": 4
+   },
+   {
+    "q": "Combien de sets faut-il gagner pour remporter Wimbledon en simple messieurs ?",
+    "a": "3 sets gagnants",
+    "level": 5
+   },
+   {
+    "q": "Quel est le record du monde du 100m masculin ?",
+    "a": "9,58s par Usain Bolt",
+    "level": 6
+   },
+   {
+    "q": "Dans quel sport utilise-t-on un marteau de 7,26 kg ?",
+    "a": "Le lancer du marteau",
+    "level": 7
+   },
+   {
+    "q": "Quel club détient le record de victoires en Ligue des Champions ?",
+    "a": "Le Real Madrid (15 titres)",
+    "level": 8
+   },
+   {
+    "q": "Quel est le score parfait au bowling ?",
+    "a": "300 (12 strikes consécutifs)",
+    "level": 10
+   },
+   {
+    "q": "Dans quel sport utilise-t-on une raquette et une balle jaune ?",
+    "a": "Tennis",
+    "level": 1
+   },
+   {
+    "q": "Combien de points vaut un panier en dehors de la raquette au basket ?",
+    "a": "3",
+    "level": 1
+   },
+   {
+    "q": "Quelle est la nationalité d'Usain Bolt",
+    "a": "Jamaique",
+    "level": 4
+   },
+   {
+    "q": "Quel sport pratiquait Tonya Harding",
+    "a": "Patinage Artistique",
+    "level": 9
+   },
+   {
+    "q": "Dans quel théatre se déroule la cérémonie du ballon d'or avant 2026",
+    "a": "Théatre du Chatelet",
+    "level": 9
+   },
+   {
+    "q": "Quel type de sport de combat est rattaché au mot \"Thai\" ?",
+    "a": "Boxe",
+    "level": 3
+   },
+   {
+    "q": "Quel nageur français a enflammé les JO de Paris",
+    "a": "Léon Marchand",
+    "level": 3
+   },
+   {
+    "q": "Quel joueur de basket a une paire de Nike à son nom ?",
+    "a": "Michael Jordan",
+    "level": 2
+   },
+   {
+    "q": "Quel animal est représenté sur le logo de l'équpe NBA de Charlotte",
+    "a": "Hornets (Frelon)",
+    "level": 9
+   },
+   {
+    "q": "Quel athlète ukrainien est le spécialiste du saut à la perche",
+    "a": "Serguei Bubka",
+    "level": 10
+   },
+   {
+    "q": "Quel est le nom du sport nautique avec une pirogue originaire de Polynésie ?",
+    "a": "Le Va'a",
+    "level": 10
+   },
+   {
+    "q": "Quel \"sport\" mélangeant gym et équitation utilise un cheval en baton",
+    "a": "Hobby Horsing",
+    "level": 7
+   },
+   {
+    "q": "Quel sport utilise les termes « birdie », « eagle » et « albatros » ?",
+    "a": "Golf",
+    "level": 6
+   },
+   {
+    "q": "Quel club français est surnommé « les Verts » ?",
+    "a": "Saint Etienne",
+    "level": 5
+   },
+   {
+    "q": "Quel nageur américain est le sportif le plus médaillé des Jeux olympiques ?",
+    "a": "Michael Phelps",
+    "level": 5
+   },
+   {
+    "q": "Dans quel lieu les épreuves d'escrime ont pris place lors des JO de Paris",
+    "a": "Grand Palais",
+    "level": 7
+   },
+   {
+    "q": "Quel sport est représenté dans Rasta Rocket",
+    "a": "Bobsleigh",
+    "level": 6
+   },
+   {
+    "q": "Quel marque de voiture Sebastien Loeb a t'il majoritairement representé",
+    "a": "Citroen",
+    "level": 6
+   },
+   {
+    "q": "Quelles sont les épreuves lors d'un triathlon ?",
+    "a": "Natation Course Vélo",
+    "level": 2
+   },
+   {
+    "q": "Quelle est la distance lors de l'épreuve mythique des haies chez les hommes",
+    "a": "110 m",
+    "level": 4
+   },
+   {
+    "q": "Dans quel discipline Yusuf Dikec excelle ?",
+    "a": "Tir Sportif",
+    "level": 10
+   },
+   {
+    "q": "Quel athlète sud-africain a été condamné pour avoir tué sa femme",
+    "a": "Oscar Pistorius",
+    "level": 8
+   },
+   {
+    "q": "En Formule 1, qui sont les 3 pilotes français",
+    "a": "Isaack Hadjar, Esteban Ocon, Pierre Gasly",
+    "level": 8
+   }
+  ],
+  "th_cinema": [
+   {
+    "q": "Quel acteur joue Iron Man dans le MCU ?",
+    "a": "Robert Downey Jr.",
+    "level": 1
+   },
+   {
+    "q": "Qui a réalisé Pulp Fiction ?",
+    "a": "Quentin Tarantino",
+    "level": 3
+   },
+   {
+    "q": "Quel film a battu le record de Titanic au box-office mondial ?",
+    "a": "Avengers Endgame",
+    "level": 4
+   },
+   {
+    "q": "Quel acteur a joué à la fois dans Matrix et John Wick ?",
+    "a": "Keanu Reeves",
+    "level": 5
+   },
+   {
+    "q": "Dans quel film Marlon Brando joue-t-il Don Corleone ?",
+    "a": "Le Parrain (1972)",
+    "level": 6
+   },
+   {
+    "q": "Quel est le film d'animation Disney avec la première princesse noire ?",
+    "a": "La Princesse et la Grenouille",
+    "level": 7
+   },
+   {
+    "q": "Qui a composé la musique de Star Wars ?",
+    "a": "John Williams",
+    "level": 8
+   },
+   {
+    "q": "Quel film de 1941 est souvent cité comme le meilleur de l'histoire ?",
+    "a": "Citizen Kane d'Orson Welles",
+    "level": 9
+   },
+   {
+    "q": "Quel réalisateur a fondé la Nouvelle Vague française avec À bout de souffle ?",
+    "a": "Jean-Luc Godard",
+    "level": 10
+   },
+   {
+    "q": "Quel studio est célèbre pour ses dessins animés avec Mickey Mouse ?",
+    "a": "Disney",
+    "level": 1
+   },
+   {
+    "q": "Dans quel film parle-t-on d’un anneau qu’il faut détruire ?",
+    "a": "Seigneur des Anneaux",
+    "level": 1
+   },
+   {
+    "q": "Quel réalisateur adore les pieds ?",
+    "a": "Tarantino",
+    "level": 5
+   },
+   {
+    "q": "Quel personnage est un petit homme vert avec une épée laser dans Star Wars ?",
+    "a": "Yoda",
+    "level": 1
+   },
+   {
+    "q": "Quel réalisateur a créé Titanic et Avatar ?",
+    "a": "James Cameron",
+    "level": 2
+   },
+   {
+    "q": "Quelle est la couleur du sabre laser de Windu dans Star Wars",
+    "a": "Violet",
+    "level": 6
+   },
+   {
+    "q": "Qui joue l'acteur principal de Will Hunting",
+    "a": "Matt Damon",
+    "level": 6
+   },
+   {
+    "q": "Quel mot est associé au bon et au truand",
+    "a": "La Brute",
+    "level": 4
+   },
+   {
+    "q": "Quel âge a Natalie Portman",
+    "a": "45 ans",
+    "level": 9
+   },
+   {
+    "q": "Qui interprète Chouchou dans 1 gars 1 fille",
+    "a": "Alexandra Lamy",
+    "level": 7
+   },
+   {
+    "q": "De quoi meurt Don Vito Corleone dans le Parrain",
+    "a": "Infractus",
+    "level": 8
+   },
+   {
+    "q": "Quel animal est associé au soldat dans Full Metal Jacket",
+    "a": "Baleine",
+    "level": 8
+   },
+   {
+    "q": "Quel chanteur joue dans l'aventure c'est l'aventure",
+    "a": "Jacques Brel",
+    "level": 7
+   },
+   {
+    "q": "De quoi est faite la soupe dans le film avec de Funes et Villeret",
+    "a": "Choux",
+    "level": 4
+   },
+   {
+    "q": "Jack et le ... magique",
+    "a": "Haricot",
+    "level": 3
+   },
+   {
+    "q": "Sur quel île se passe un des films scooby-doo",
+    "a": "Spooky Island",
+    "level": 5
+   },
+   {
+    "q": "Qui incarne James Bond dans les derniers films",
+    "a": "Daniel Craig",
+    "level": 2
+   },
+   {
+    "q": "Dans quel saga Daniel Radcliffe a joué plus jeune ?",
+    "a": "Harry Potter",
+    "level": 2
+   },
+   {
+    "q": "Comment est le fleuve dans la vie est un long fleuve ...",
+    "a": "Tranquille",
+    "level": 5
+   },
+   {
+    "q": "Que signifie Mimi-Siku dans Un indien dans la ville",
+    "a": "Pipi de chat",
+    "level": 10
+   },
+   {
+    "q": "Pour quel personnage Skyler chante Happy Birthday dans Breaking Bad",
+    "a": "Ted Beneke",
+    "level": 9
+   },
+   {
+    "q": "Quel acteur a joué Jack Dawson dans Titanic",
+    "a": "Di Caprio",
+    "level": 3
+   },
+   {
+    "q": "Qui a pissé sur la jambe de Monica dans Friends",
+    "a": "Chandler",
+    "level": 10
+   }
+  ],
+  "th_geographie": [
+   {
+    "q": "Quel est le plus grand pays du monde ?",
+    "a": "La Russie",
+    "level": 2
+   },
+   {
+    "q": "Dans quel pays se trouve le Taj Mahal ?",
+    "a": "L'Inde",
+    "level": 3
+   },
+   {
+    "q": "Quel est le plus long fleuve du monde ?",
+    "a": "Le Nil (ou l'Amazone selon les mesures)",
+    "level": 4
+   },
+   {
+    "q": "Quelle est la capitale du Canada ?",
+    "a": "Ottawa",
+    "level": 5
+   },
+   {
+    "q": "Quel est le plus grand désert du monde ?",
+    "a": "L'Antarctique",
+    "level": 6
+   },
+   {
+    "q": "Dans quel pays se trouve le Machu Picchu ?",
+    "a": "Le Pérou",
+    "level": 7
+   },
+   {
+    "q": "Quelle mer se trouve entre l'Italie et la Croatie ?",
+    "a": "La mer Adriatique",
+    "level": 8
+   },
+   {
+    "q": "Quelle est la capitale du Kazakhstan ?",
+    "a": "Astana",
+    "level": 9
+   },
+   {
+    "q": "Quelle est la capitale de la France",
+    "a": "Paris",
+    "level": 1
+   },
+   {
+    "q": "Sur quel continent se trouve l'égypte ?",
+    "a": "Afrique",
+    "level": 1
+   },
+   {
+    "q": "Où se trouve Big Ben ?",
+    "a": "Londres",
+    "level": 1
+   },
+   {
+    "q": "Quel lieu touristique normand a le même nom qu'une marque de gateau",
+    "a": "Mont Saint Michel",
+    "level": 4
+   },
+   {
+    "q": "Quel désert couvre une grande partie de l’Afrique du Nord ?",
+    "a": "Sahara",
+    "level": 2
+   },
+   {
+    "q": "Quel pays possède la Tour de Pise ?",
+    "a": "Italie",
+    "level": 2
+   },
+   {
+    "q": "La distance Paris Strasbourg a vol d'oiseau est elle plus courte ou plus longue que Strasbourg Berlin",
+    "a": "Courte",
+    "level": 5
+   },
+   {
+    "q": "Où se trouve le musée l'ermitage",
+    "a": "St-Petersburg",
+    "level": 7
+   },
+   {
+    "q": "A qui appartient l'archipel de Svalbard",
+    "a": "Norvège",
+    "level": 6
+   },
+   {
+    "q": "Quel pays est le seul à être entièrement entouré par un seul autre pays ?",
+    "a": "Lesotho",
+    "level": 9
+   },
+   {
+    "q": "Quel pays possède le plus grand nombre de volcans actifs par habitant ?",
+    "a": "Islande",
+    "level": 7
+   },
+   {
+    "q": "Dans quel pays se trouve le Pape ?",
+    "a": "Vatican",
+    "level": 3
+   },
+   {
+    "q": "Quelle ville est surnommée la Grosse Pomme",
+    "a": "New York",
+    "level": 4
+   },
+   {
+    "q": "Dans quel pays peut on trouver la grande muraille",
+    "a": "Chine",
+    "level": 3
+   },
+   {
+    "q": "Où se trouve Kourou",
+    "a": "Guyane Française",
+    "level": 6
+   },
+   {
+    "q": "Quel pays a une machette sur son drapeau",
+    "a": "Angola",
+    "level": 8
+   },
+   {
+    "q": "Dans quel pays asiatique et montagneux Tintin fait une escale",
+    "a": "Tibet",
+    "level": 5
+   },
+   {
+    "q": "Quelle est la capitale du Suriname",
+    "a": "Paramaribo",
+    "level": 9
+   },
+   {
+    "q": "Dans quel lac le rhin prend sa source",
+    "a": "Lac de Toma",
+    "level": 10
+   },
+   {
+    "q": "Dans quel détroit se situe le Krakatoa",
+    "a": "Détroit de la Sonde",
+    "level": 10
+   },
+   {
+    "q": "Quelle ville a accueilli un musée du louvre en 2017",
+    "a": "Adbu Dhabi",
+    "level": 8
+   },
+   {
+    "q": "Quel est le point culminant du pays de Galles",
+    "a": "Mont Snowdon",
+    "level": 10
+   }
+  ],
+  "th_histoire": [
+   {
+    "q": "En quelle année a eu lieu la Révolution française ?",
+    "a": "1789",
+    "level": 1
+   },
+   {
+    "q": "Qui a découvert l'Amérique en 1492 ?",
+    "a": "Christophe Colomb",
+    "level": 2
+   },
+   {
+    "q": "Quelle civilisation a construit les pyramides de Gizeh ?",
+    "a": "Les Anciens Égyptiens",
+    "level": 3
+   },
+   {
+    "q": "En quelle année a eu lieu le débarquement en Normandie ?",
+    "a": "1944",
+    "level": 4
+   },
+   {
+    "q": "Qui était le premier président des États-Unis ?",
+    "a": "George Washington",
+    "level": 5
+   },
+   {
+    "q": "En quelle année est tombé le mur de Berlin ?",
+    "a": "1989",
+    "level": 6
+   },
+   {
+    "q": "Quel traité a mis fin à la Première Guerre Mondiale ?",
+    "a": "Le traité de Versailles (1919)",
+    "level": 7
+   },
+   {
+    "q": "Qui a fondé l'Empire mongol au XIIIe siècle ?",
+    "a": "Gengis Khan",
+    "level": 8
+   },
+   {
+    "q": "En quelle année a été fondée la République Populaire de Chine ?",
+    "a": "1949",
+    "level": 9
+   },
+   {
+    "q": "Quelle bataille de 732 a stoppé l'expansion arabe en Europe ?",
+    "a": "La bataille de Poitiers",
+    "level": 10
+   },
+   {
+    "q": "Dans quelle ville François Ferdinand a été assassiné",
+    "a": "Sarajevo",
+    "level": 5
+   },
+   {
+    "q": "Quelle ville européenne a été séparé par un mur jusqu'en 1989",
+    "a": "Berlin",
+    "level": 3
+   },
+   {
+    "q": "Quel chef d'état et général est né à Lille",
+    "a": "De Gaulle",
+    "level": 2
+   },
+   {
+    "q": "Quel est le nom posthum d'Hiro hito",
+    "a": "Showa Tenno",
+    "level": 10
+   },
+   {
+    "q": "Dans quel lieu s'est passé la rafle du 16 et 17 juillet 1942",
+    "a": "Vélodrome d'Hiver",
+    "level": 8
+   },
+   {
+    "q": "Qui a tué Henri IV",
+    "a": "Ravaillac",
+    "level": 6
+   },
+   {
+    "q": "Quel chef des gaulois a perdu à Alésia en 52 av JC",
+    "a": "Vercingétorix",
+    "level": 4
+   },
+   {
+    "q": "Les dates de la première guerre mondiale",
+    "a": "1914 1918",
+    "level": 1
+   },
+   {
+    "q": "Sur quelle radio le Général de Gaulle a passé son appel ?",
+    "a": "BBC",
+    "level": 6
+   },
+   {
+    "q": "Quelle est la date de début de construction de Notre Dame de Paris",
+    "a": "1163",
+    "level": 10
+   },
+   {
+    "q": "Quelle était la dernière dynastie en chine (fin en 1912)",
+    "a": "Qing",
+    "level": 9
+   },
+   {
+    "q": "En quelle année a eu lieu la bataille de Marignan",
+    "a": "1515",
+    "level": 3
+   },
+   {
+    "q": "Quel roi est associé au vase de Soissons",
+    "a": "Clovis",
+    "level": 4
+   },
+   {
+    "q": "Quel roi de Norvege est récemment décédé",
+    "a": "Harald V",
+    "level": 7
+   },
+   {
+    "q": "Quelle bataille navale de 1805 a vu la victoire de l’amiral Nelson ?",
+    "a": "Nelson",
+    "level": 8
+   },
+   {
+    "q": "Sur quelle île Napoléon a été exilé la première fois",
+    "a": "L'ile d'Elbe",
+    "level": 5
+   },
+   {
+    "q": "Quel roi a condamné William Wallace",
+    "a": "Edouard 1er",
+    "level": 9
+   },
+   {
+    "q": "Quel était le parti de Robespierre, Marat, Danton ,...",
+    "a": "Groupe des Montagnards",
+    "level": 7
+   },
+   {
+    "q": "Quel prénom est associé à l'objet arc et est une célèbre figure",
+    "a": "Jeanne",
+    "level": 2
+   },
+   {
+    "q": "Qui était le Roi Soleil",
+    "a": "Louis XIV",
+    "level": 1
+   }
+  ],
+  "th_musique": [
+   {
+    "q": "Qui chante Thriller ?",
+    "a": "Michael Jackson",
+    "level": 1
+   },
+   {
+    "q": "Quel groupe a chanté Bohemian Rhapsody ?",
+    "a": "Queen",
+    "level": 2
+   },
+   {
+    "q": "Dans quel pays est né Bob Marley ?",
+    "a": "La Jamaïque",
+    "level": 3
+   },
+   {
+    "q": "Qui a composé La Flûte enchantée ?",
+    "a": "Mozart",
+    "level": 4
+   },
+   {
+    "q": "Quel est le vrai nom de Lady Gaga ?",
+    "a": "Stefani Germanotta",
+    "level": 5
+   },
+   {
+    "q": "Quel groupe britannique a sorti The Dark Side of the Moon ?",
+    "a": "Pink Floyd",
+    "level": 6
+   },
+   {
+    "q": "Qui a composé le Boléro ?",
+    "a": "Maurice Ravel",
+    "level": 7
+   },
+   {
+    "q": "Quel pianiste polonais romantique a composé des nocturnes célèbres ?",
+    "a": "Frédéric Chopin",
+    "level": 8
+   },
+   {
+    "q": "Quel est le nom du célèbre opéra de Verdi avec un personnage nommé Violetta ?",
+    "a": "La Traviata",
+    "level": 10
+   },
+   {
+    "q": "Quel DJ portant une armure propose des musiques \"électro-médiéval\"",
+    "a": "Perceval",
+    "level": 6
+   },
+   {
+    "q": "Quel compositeur a réalisé les musiques d'Interstellar",
+    "a": "Hans Zimmer",
+    "level": 4
+   },
+   {
+    "q": "Quel chanteur a remplacé Peter Gabriel dans Genesis",
+    "a": "Phil Collins",
+    "level": 7
+   },
+   {
+    "q": "Qui a tué John Lennon ?²",
+    "a": "Mark Chapman",
+    "level": 9
+   },
+   {
+    "q": "Quel instrument représente le grand-père dans Pierre et le Loup",
+    "a": "le basson",
+    "level": 8
+   },
+   {
+    "q": "Qu'est ce qu'un Stradivarius",
+    "a": "Violon",
+    "level": 5
+   },
+   {
+    "q": "Qui chante les lacs du Connemarra",
+    "a": "Sardou",
+    "level": 3
+   },
+   {
+    "q": "Dans quel état américain IZ est né",
+    "a": "Hawaii",
+    "level": 6
+   },
+   {
+    "q": "Dans quelle groupe Mark Knopfler est le chanteur principal",
+    "a": "Dire Straits",
+    "level": 7
+   },
+   {
+    "q": "Quel chanteur américain mort à 27 ans et est enterré au Pere la Chaise",
+    "a": "Jim  Morrison",
+    "level": 8
+   },
+   {
+    "q": "Quelle chanteuse japonaise chante le générique de l'anime Demon Slayer",
+    "a": "LiSA",
+    "level": 10
+   },
+   {
+    "q": "Combien d'enfants a David Hallyday",
+    "a": "3",
+    "level": 10
+   },
+   {
+    "q": "Quel groupe français chante J'ai demandé à la Lune",
+    "a": "Indochine",
+    "level": 2
+   },
+   {
+    "q": "Quelle émission sur TF1 a des sièges rouges qui se retournent",
+    "a": "The Voice",
+    "level": 1
+   },
+   {
+    "q": "Quel groupe chante Gimme Gimme Gimme",
+    "a": "Abba",
+    "level": 3
+   },
+   {
+    "q": "Qui a chanté le Zizi",
+    "a": "Pierre Perret",
+    "level": 5
+   },
+   {
+    "q": "Quelle est l'origine du chanteur Stromae",
+    "a": "Belge",
+    "level": 2
+   },
+   {
+    "q": "Quel est l'âge de Lana Del Rey",
+    "a": "41",
+    "level": 9
+   },
+   {
+    "q": "Quel acteur chante un poème pour The Weeknd",
+    "a": "Jim Carrey",
+    "level": 9
+   },
+   {
+    "q": "Qui a composé les 4 saisons",
+    "a": "Vivaldi",
+    "level": 4
+   },
+   {
+    "q": "Qui est Jean Philippe Smet",
+    "a": "Johnny Hallyday",
+    "level": 1
+   }
+  ],
+  "th_sciences": [
+   {
+    "q": "Quelle est la formule chimique de l'eau ?",
+    "a": "H₂O",
+    "level": 1
+   },
+   {
+    "q": "Quelle planète est la plus grande du système solaire ?",
+    "a": "Jupiter",
+    "level": 2
+   },
+   {
+    "q": "Quel est le symbole chimique de l'or ?",
+    "a": "Au",
+    "level": 3
+   },
+   {
+    "q": "Combien d'os a le corps humain adulte ?",
+    "a": "206 os",
+    "level": 4
+   },
+   {
+    "q": "Quelle est la vitesse de la lumière ?",
+    "a": "300 000 km/s",
+    "level": 5
+   },
+   {
+    "q": "Qui a formulé la théorie de la relativité ?",
+    "a": "Albert Einstein",
+    "level": 6
+   },
+   {
+    "q": "Quelle enzyme réplique l'ADN ?",
+    "a": "L'ADN polymérase",
+    "level": 9
+   },
+   {
+    "q": "Quelle est la constante de Boltzmann ?",
+    "a": "Environ 1,381 × 10⁻²³ J/K",
+    "level": 10
+   },
+   {
+    "q": "Quel est l'autre nom de la Trisomie 21",
+    "a": "Syndrome de Down",
+    "level": 8
+   },
+   {
+    "q": "Quel organe pompe le sang dans le corps ?",
+    "a": "Coeur",
+    "level": 1
+   },
+   {
+    "q": "Quelle est la planète la plus proche du Soleil ?",
+    "a": "Mercure",
+    "level": 2
+   },
+   {
+    "q": "Comment appelle t'on la limite entre la croute terrestre et le manteau supérieur",
+    "a": "discontinuité de Mohorovičić",
+    "level": 9
+   },
+   {
+    "q": "Quelle est l'échelle qui représente la qualité des selles",
+    "a": "Echelle de Bristol",
+    "level": 7
+   },
+   {
+    "q": "Quel est le prénom de Kepler",
+    "a": "Johannes",
+    "level": 7
+   },
+   {
+    "q": "Quand une solution a un pH supérieur à 7 on dit que la solution est",
+    "a": "Basique",
+    "level": 3
+   },
+   {
+    "q": "Numéro atomique du Plutonium",
+    "a": "94",
+    "level": 10
+   },
+   {
+    "q": "Dans le syndrome de Silver-Russel quel gène est très souvent surexprimé",
+    "a": "H19",
+    "level": 10
+   },
+   {
+    "q": "Qui a découvert la Penicilline",
+    "a": "Fleming",
+    "level": 7
+   },
+   {
+    "q": "Quel scientifique a formulé le principe d’incertitude ?",
+    "a": "Heisenberg",
+    "level": 9
+   },
+   {
+    "q": "Quel est le premier mammifère cloné",
+    "a": "Dolly mouton",
+    "level": 6
+   },
+   {
+    "q": "Quelle est la constante d’Avogadro ?",
+    "a": "Environ 6,022 × 10²³ mol⁻¹",
+    "level": 8
+   },
+   {
+    "q": "Quel est le plus petit constituant de la matière selon le modèle standard ?",
+    "a": "Le quark",
+    "level": 8
+   },
+   {
+    "q": "Quelle est l'étoile la plus proche de la planète Terre",
+    "a": "Le Soleil",
+    "level": 1
+   },
+   {
+    "q": "Quel groupe sanguin est donneur universel",
+    "a": "0-",
+    "level": 3
+   },
+   {
+    "q": "Quelle femme française a reçu deux Prix Nobel",
+    "a": "Marie Curie",
+    "level": 2
+   },
+   {
+    "q": "Quel cancer est rattaché à Octobre Rose",
+    "a": "Sein",
+    "level": 4
+   },
+   {
+    "q": "Quel scientifique est rattaché à une Pomme",
+    "a": "Newton",
+    "level": 4
+   },
+   {
+    "q": "Quelle est l’unité de mesure de la résistance électrique ?",
+    "a": "Ohm",
+    "level": 5
+   },
+   {
+    "q": "Quelle maladie est rattaché aux Tiques",
+    "a": "Lyme",
+    "level": 6
+   },
+   {
+    "q": "Quel organite de couleur verte retrouve t'on chez les plantes",
+    "a": "Chloroplastes",
+    "level": 5
+   }
+  ],
+  "th_gastronomie": [
+   {
+    "q": "Dans quel pays est né le sushi ?",
+    "a": "Le Japon",
+    "level": 1
+   },
+   {
+    "q": "Quelle épice est la plus chère du monde ?",
+    "a": "Le safran",
+    "level": 2
+   },
+   {
+    "q": "De quel pays vient le fromage Gouda ?",
+    "a": "Les Pays-Bas",
+    "level": 3
+   },
+   {
+    "q": "Quel cocktail contient du rhum, de la menthe et du citron vert ?",
+    "a": "Le mojito",
+    "level": 4
+   },
+   {
+    "q": "Dans quel pays est né le croissant ?",
+    "a": "L'Autriche",
+    "level": 5
+   },
+   {
+    "q": "Quelle région française est réputée pour sa choucroute ?",
+    "a": "L'Alsace",
+    "level": 6
+   },
+   {
+    "q": "De quel pays vient le mets délicat fugu ?",
+    "a": "Le Japon",
+    "level": 7
+   },
+   {
+    "q": "Quel champignon haut de gamme pousse notamment dans le Périgord ?",
+    "a": "La truffe noire",
+    "level": 8
+   },
+   {
+    "q": "Dans quelle région d'Espagne produit-on le jambon Pata Negra ?",
+    "a": "L'Estrémadure et l'Andalousie",
+    "level": 9
+   },
+   {
+    "q": "Quel est le vrai nom du cépage utilisé pour le champagne blanc de blancs ?",
+    "a": "Le chardonnay",
+    "level": 10
+   },
+   {
+    "q": "Quel est le plat préféré de Chirac",
+    "a": "Tête de Veau",
+    "level": 9
+   },
+   {
+    "q": "Quelle présentatrice Télé est connue pour ses plats généreux",
+    "a": "Maïté",
+    "level": 8
+   },
+   {
+    "q": "Quel fromage est associé au Penicilium Roqueforti",
+    "a": "Roquefort",
+    "level": 1
+   },
+   {
+    "q": "Quel fruit est dans Mario Kart",
+    "a": "Banane",
+    "level": 1
+   },
+   {
+    "q": "Avec le boeuf quelle est l'autre viande qui accompagne le Tournedos Rossini",
+    "a": "Foie gras",
+    "level": 5
+   },
+   {
+    "q": "Avec quoi fait-on les meringues",
+    "a": "Blanc d'oeuf",
+    "level": 4
+   },
+   {
+    "q": "Dans quel département française se trouve la distillerie Twelve",
+    "a": "Aveyron",
+    "level": 10
+   },
+   {
+    "q": "Qu'est ce qu'on rajoute à la Béchamel pour avoir une sauce Mornay",
+    "a": "Fromage rapé",
+    "level": 7
+   },
+   {
+    "q": "Quelle est la différence entre un croque madame et un croque monsieur",
+    "a": "L'oeuf",
+    "level": 3
+   },
+   {
+    "q": "Quel animal est associé à un plat bourguignon",
+    "a": "Boeuf",
+    "level": 2
+   },
+   {
+    "q": "Quel fruit est associé à la ville de Menton",
+    "a": "Citron",
+    "level": 7
+   },
+   {
+    "q": "Quel fruit Louis Sarkozy a gouté en Colombie",
+    "a": "Une Mangue",
+    "level": 8
+   },
+   {
+    "q": "Quel est le chou qu'on retrouve dans le Kebab",
+    "a": "Chou Rouge",
+    "level": 5
+   },
+   {
+    "q": "A parti de quel fruit cendrillon obtient un carrosse",
+    "a": "Citrouille",
+    "level": 6
+   },
+   {
+    "q": "Quelle ville est reconnue pour sa crème et son beurre",
+    "a": "Isigny sur mer",
+    "level": 6
+   },
+   {
+    "q": "Quel est le plat mythique du chef Joel Rebuchon",
+    "a": "Purée de Pdt",
+    "level": 9
+   },
+   {
+    "q": "Qu'est ce que le caviar",
+    "a": "Oeufs d'estrugeon",
+    "level": 4
+   },
+   {
+    "q": "Quel est le continent d'origine du couscous",
+    "a": "Afrique",
+    "level": 2
+   },
+   {
+    "q": "Quelle est la marque de fabrique de Meerts",
+    "a": "Les Gaufres",
+    "level": 3
+   },
+   {
+    "q": "Quel est le nom du fromage italien avec des vers dedans",
+    "a": "Cazu Marzu",
+    "level": 10
+   }
+  ],
+  "th_1792088706487": []
+ }
 };
 
 function loadState(){
@@ -991,17 +2183,17 @@ function renderAdminExport(body){
 }
 function exportWithData(){
   const dbJson=JSON.stringify(DB).replace(/</g,'\\u003c').replace(/>/g,'\\u003e').replace(/&/g,'\\u0026');
-  const html=document.documentElement.outerHTML;
-  const exported=html.replace(
-    /const DEFAULT_DB=\{[\s\S]*?\}(?=;\s*\nfunction loadState)/,
-    `const DEFAULT_DB=${dbJson}`
-  );
+  const html=SOURCE_HTML;
+  const a0=html.indexOf('const DEFAULT_DB');
+  const a1=a0<0?-1:html.indexOf('function loadState',a0);
+  if(a0<0||a1<0){alert("Export impossible : bloc DEFAULT_DB introuvable.");return;}
+  const exported=html.slice(0,a0)+'const DEFAULT_DB = '+dbJson+';\n\n'+html.slice(a1);
   const blob=new Blob([exported],{type:'text/html'});
   const a=document.createElement('a');
   a.href=URL.createObjectURL(blob);
-  a.download='ttmc.html';
+  a.download='index.html';
   a.click();
-  URL.revokeObjectURL(a.href);
+  setTimeout(()=>URL.revokeObjectURL(a.href),1000);
 }
 
 let editQIdx=null;
