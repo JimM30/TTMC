@@ -1,12 +1,10 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<html lang="fr"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>TTMC 🎯</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Nunito:wght@400;600;700;800;900&amp;display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
 :root{
@@ -221,7 +219,7 @@ body{display:flex;align-items:center;justify-content:center;min-height:100vh;pad
 <div id="app">
 
   <!-- S0 MODE -->
-  <div id="s0" class="screen active">
+  <div id="s0" class="screen">
     <div class="topbar">
       <div class="logo">TTMC</div>
       <button class="admin-btn" onclick="openCodeModal()">🔐 Admin</button>
@@ -234,12 +232,12 @@ body{display:flex;align-items:center;justify-content:center;min-height:100vh;pad
       <div class="tagline">Choisis ton mode de jeu</div>
       <div class="mode-select-wrap">
         <div class="mode-cards">
-          <div class="mode-card selected" id="mc-selection" onclick="selectMode('selection')">
+          <div class="mode-card" id="mc-selection" onclick="selectMode('selection')">
             <div class="mc-icon">📋</div>
             <div class="mc-name">Sélection</div>
             <div class="mc-desc">Choisis les thèmes à jouer</div>
           </div>
-          <div class="mode-card" id="mc-roulette" onclick="selectMode('roulette')">
+          <div class="mode-card selected" id="mc-roulette" onclick="selectMode('roulette')">
             <div class="mc-icon">🎰</div>
             <div class="mc-name">Roulette</div>
             <div class="mc-desc">La roue décide du thème</div>
@@ -251,7 +249,7 @@ body{display:flex;align-items:center;justify-content:center;min-height:100vh;pad
   </div>
 
   <!-- S1 ACCUEIL -->
-  <div id="s1" class="screen">
+  <div id="s1" class="screen active">
     <div class="topbar">
       <div class="logo">TTMC</div>
       <button class="admin-btn" onclick="openCodeModal()">🔐 Admin</button>
@@ -266,10 +264,10 @@ body{display:flex;align-items:center;justify-content:center;min-height:100vh;pad
         <div class="section-lbl">Joueurs</div>
         <div class="player-tags" id="player-tags"></div>
         <div class="add-player">
-          <input id="player-input" type="text" placeholder="Pseudo du joueur..." maxlength="18" onkeydown="if(event.key==='Enter')addPlayer()"/>
+          <input id="player-input" type="text" placeholder="Pseudo du joueur..." maxlength="18" onkeydown="if(event.key==='Enter')addPlayer()">
           <button onclick="addPlayer()">+</button>
         </div>
-        <button class="play-btn" onclick="startGame()" id="play-btn" disabled>C'est parti !</button>
+        <button class="play-btn" onclick="startGame()" id="play-btn" disabled="">C'est parti !</button>
       </div>
     </div>
   </div>
@@ -277,14 +275,70 @@ body{display:flex;align-items:center;justify-content:center;min-height:100vh;pad
   <!-- S2 JEU -->
   <div id="s2" class="screen">
     <div class="game-header">
-      <div class="scoreboard" id="scoreboard"></div>
+      <div class="scoreboard" id="scoreboard"><div class="score-pill">
+      <span class="score-name" style="color:#E8FF3A">yu</span>
+      <span class="score-pts ">0</span>
+    </div><div class="score-pill">
+      <span class="score-name" style="color:#3AFFE8">uiou</span>
+      <span class="score-pts ">0</span>
+    </div></div>
     </div>
     <div class="phase-indicator">
-      <div class="phase-dot" id="pd1"></div>
-      <div class="phase-dot" id="pd2"></div>
-      <div class="phase-dot" id="pd3"></div>
+      <div class="phase-dot done" id="pd1"></div>
+      <div class="phase-dot done" id="pd2"></div>
+      <div class="phase-dot active" id="pd3"></div>
     </div>
-    <div class="theme-area" id="theme-area"></div>
+    <div class="theme-area" id="theme-area">
+    <div style="width:100%;max-width:460px;overflow-y:auto">
+      <div style="font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:2px;margin-bottom:10px;text-align:center">🎵 Musique — Questions</div>
+      
+      <div style="background:var(--surface2);border:1px solid var(--border);border-radius:14px;padding:14px 16px;width:100%;margin-bottom:8px">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+          <span style="color:#E8FF3A;font-weight:800;font-size:13px">yu</span>
+          <span style="font-family:'Bebas Neue',cursive;font-size:16px;color:var(--accent)">Niveau 5</span>
+        </div>
+        <div style="font-size:15px;font-weight:800;color:white;line-height:1.4;margin-bottom:8px">Quel est le vrai nom de Lady Gaga ?</div>
+        <div id="ans-0" style="display: block;">
+          <div style="font-size:10px;color:rgba(232,255,58,0.5);text-transform:uppercase;letter-spacing:2px;margin-bottom:2px">Réponse</div>
+          <div style="font-size:14px;font-weight:800;color:var(--accent)">Stefani Germanotta</div>
+        </div>
+        <button onclick="toggleAnswer(0)" id="ans-btn-0" style="background:rgba(232,255,58,0.08);border:1px solid rgba(232,255,58,0.2);border-radius:8px;padding:5px 12px;color:var(--accent);font-size:12px;font-weight:700;cursor:pointer;font-family:'Nunito',sans-serif;margin-top:4px">🙈 Cacher</button>
+      </div>
+      <div style="background:var(--surface2);border:1px solid var(--border);border-radius:14px;padding:14px 16px;width:100%;margin-bottom:8px">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+          <span style="color:#3AFFE8;font-weight:800;font-size:13px">uiou</span>
+          <span style="font-family:'Bebas Neue',cursive;font-size:16px;color:var(--accent)">Niveau 4</span>
+        </div>
+        <div style="font-size:15px;font-weight:800;color:white;line-height:1.4;margin-bottom:8px">Qui a composé La Flûte enchantée ?</div>
+        <div id="ans-1" style="display: block;">
+          <div style="font-size:10px;color:rgba(232,255,58,0.5);text-transform:uppercase;letter-spacing:2px;margin-bottom:2px">Réponse</div>
+          <div style="font-size:14px;font-weight:800;color:var(--accent)">Mozart</div>
+        </div>
+        <button onclick="toggleAnswer(1)" id="ans-btn-1" style="background:rgba(232,255,58,0.08);border:1px solid rgba(232,255,58,0.2);border-radius:8px;padding:5px 12px;color:var(--accent);font-size:12px;font-weight:700;cursor:pointer;font-family:'Nunito',sans-serif;margin-top:4px">🙈 Cacher</button>
+      </div>
+      <div style="font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:2px;margin:14px 0 8px;text-align:center">Résultats du tour</div>
+      <div class="score-dist" id="score-dist">
+      <div class="score-dist-row" id="qrow-0">
+        <div class="sdr-name" style="color:#E8FF3A">yu</div>
+        <div class="sdr-mise" style="color:var(--accent)">Lvl 5</div>
+        <div style="display:flex;gap:6px">
+          <button class="sdr-correct" id="btn-correct-0" onclick="markAnswer('yu',0,true)">✓ Juste</button>
+          <button class="sdr-wrong" id="btn-wrong-0" onclick="markAnswer('yu',0,false)">✗ Faux</button>
+        </div>
+      </div>
+      <div class="score-dist-row" id="qrow-1">
+        <div class="sdr-name" style="color:#3AFFE8">uiou</div>
+        <div class="sdr-mise" style="color:var(--accent)">Lvl 4</div>
+        <div style="display:flex;gap:6px">
+          <button class="sdr-correct" id="btn-correct-1" onclick="markAnswer('uiou',1,true)">✓ Juste</button>
+          <button class="sdr-wrong" id="btn-wrong-1" onclick="markAnswer('uiou',1,false)">✗ Faux</button>
+        </div>
+      </div></div>
+      <div style="display:flex;gap:10px;justify-content:center;margin-top:4px;flex-wrap:wrap">
+        <button class="next-round-btn" onclick="nextRound()" id="next-round-btn">Tour suivant →</button>
+        <button class="replay-btn-home" onclick="goTo('s1')" style="background:rgba(255,255,255,0.07);border:1px solid var(--border);border-radius:12px;padding:12px 20px;color:var(--text2);font-size:14px;font-weight:700;cursor:pointer;font-family:'Nunito',sans-serif;">← Accueil</button>
+      </div>
+    </div></div>
   </div>
 
 </div>
@@ -294,24 +348,37 @@ body{display:flex;align-items:center;justify-content:center;min-height:100vh;pad
   <div class="code-modal-inner">
     <h3>🔐 Admin</h3>
     <p>Entre le code pour accéder à l'administration</p>
-    <input class="code-input-field" type="password" id="code-input" maxlength="8" placeholder="••••" onkeydown="if(event.key==='Enter')checkCode()"/>
+    <input class="code-input-field" type="password" id="code-input" maxlength="8" placeholder="••••" onkeydown="if(event.key==='Enter')checkCode()">
     <div class="code-err" id="code-err"></div>
-    <button class="code-ok-btn" onclick="checkCode()">Entrer</button><br/>
+    <button class="code-ok-btn" onclick="checkCode()">Entrer</button><br>
     <button class="cancel-link" onclick="closeCodeModal()">Annuler</button>
   </div>
 </div>
 
 <!-- ADMIN MODAL -->
-<div class="modal-overlay" id="admin-overlay">
+<div class="modal-overlay open" id="admin-overlay">
   <div class="modal">
     <div class="modal-title">ADMIN <button class="modal-close" onclick="closeAdmin()">✕</button></div>
     <div class="modal-tabs">
-      <button class="modal-tab active" onclick="adminTab('questions')">Questions</button>
+      <button class="modal-tab" onclick="adminTab('questions')">Questions</button>
       <button class="modal-tab" onclick="adminTab('themes')">Thèmes</button>
-      <button class="modal-tab" onclick="adminTab('export')">Exporter</button>
+      <button class="modal-tab active" onclick="adminTab('export')">Exporter</button>
       <button class="modal-tab" onclick="adminTab('code')">Code</button>
     </div>
-    <div class="modal-body" id="admin-body"></div>
+    <div class="modal-body" id="admin-body">
+    <div class="info-note">
+      📥 <strong>Problème :</strong> Tes thèmes et questions sont dans le navigateur. Si tu uploades un nouveau fichier sur GitHub, ils ne sont <strong>pas dedans</strong>.<br><br>
+      ✅ <strong>Solution :</strong> Clique ci-dessous pour télécharger un fichier HTML qui <strong>contient déjà toutes tes données</strong>. C'est ce fichier que tu mets sur GitHub !
+    </div>
+    <div style="background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:12px 14px;display:flex;justify-content:space-between;align-items:center;">
+      <div>
+        <div style="font-size:13px;font-weight:700;color:white">9 thèmes</div>
+        <div style="font-size:11px;color:var(--text3)">259 questions au total</div>
+      </div>
+      <div style="font-size:24px">📦</div>
+    </div>
+    <button onclick="exportWithData()" style="background:linear-gradient(135deg,#3AFFE8,#00C9B1);border:none;border-radius:10px;padding:12px;color:var(--bg);font-size:14px;font-weight:800;cursor:pointer;font-family:'Nunito',sans-serif;width:100%;transition:.2s;">⬇️ Télécharger le HTML avec mes données</button>
+    <div class="info-note" style="margin-top:0">Renomme le fichier en <strong>index.html</strong> avant de l'uploader sur GitHub.</div></div>
   </div>
 </div>
 
@@ -1134,5 +1201,6 @@ function changeCode(){
 document.getElementById('code-overlay').addEventListener('click',function(e){if(e.target===this)closeCodeModal();});
 document.getElementById('admin-overlay').addEventListener('click',function(e){if(e.target===this)closeAdmin();});
 </script>
-</body>
-</html>
+
+
+</body></html>
